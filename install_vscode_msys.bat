@@ -7,29 +7,13 @@ echo ===================================================
 set "CURRENT_DIR=%~dp0"
 set "MSYS_DIR=%CURRENT_DIR%msys64"
 
-:: --- PHAN 1: KIEM TRA VA CAI DAT VS CODE ---
-echo [*] Dang kiem tra Visual Studio Code...
-where code >nul 2>nul
-if %ERRORLEVEL% neq 0 (
-    echo [!] Khong tim thay VS Code trong he thong.
-    echo [>] Dang tai VS Code moi nhat tu trang chu...
-    :: Link tai ban User Installer x64 on dinh
-    curl -L -o "vscode_user_setup.exe" "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
-    
-    echo [>] Dang cai dat VS Code am tham (Silent Install)...
-    :: /verysilent: khong hien cua so, /mergetasks=!runcode,addtopath: them vao PATH va khong tu mo sau khi cai
-    start /wait vscode_user_setup.exe /verysilent /mergetasks=!runcode,addtopath
-    
-    del "vscode_user_setup.exe"
-    echo [OK] Da cai dat VS Code xong!
-    
-    :: Cap nhat PATH tam thoi cho cua so CMD nay de nhan lenh 'code' ngay lap tuc
-    set "PATH=%LocalAppData%\Programs\Microsoft VS Code\bin;%PATH%"
-) else (
-    echo [OK] VS Code da duoc cai dat san.
-)
+echo Dang cai VSCode...
+curl -L -o "vscode_setup.exe" "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+start /wait vscode_setup.exe /verysilent /mergetasks=!runcode,addtopath
+del "vscode_setup.exe"
+set "PATH=%LocalAppData%\Programs\Microsoft VS Code\bin;%PATH%"
+echo Da cai VSCode thanh cong!
 
-:: --- PHAN 2: THIET LAP MSYS2 (G++ & GDB) ---
 set "MSYS_URL=https://github.com/msys2/msys2-installer/releases/download/2024-01-13/msys2-base-x86_64-20240113.sfx.exe"
 set "INSTALLER=msys2-base.sfx.exe"
 
@@ -52,14 +36,12 @@ echo [3/4] Dang ket noi may chu MSYS2.org de tai G++ va GDB...
 call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -Sy --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
 
 :install_extensions
-:: --- PHAN 3: CAI DAT EXTENSIONS ---
 echo.
 echo [4/4] Dang cai dat Extensions cho VS Code...
-:: Su dung call code de dam bao lenh chay on dinh
 call code --install-extension ms-vscode.cpptools --force
 call code --install-extension formulahendry.code-runner --force
+call code --install-extension zhuangtongfa.Material-theme --force
 
-:: --- PHAN 4: CAU HINH BIEN MOI TRUONG ---
 echo.
 echo [*] Dang cau hinh bien moi truong...
 setx MY_COMPILER "%MSYS_DIR%\ucrt64\bin"
