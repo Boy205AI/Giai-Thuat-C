@@ -1,45 +1,40 @@
-# 🚀 Môi trường C++ "1-Click" (UCRT64)
+# 🚀 Giai-Thuat-C: Môi trường C++ "1-Click" (UCRT64)
 
-Bộ công cụ tự động setup môi trường lập trình C++ dành riêng cho sinh viên KHMT thực hành tại phòng máy. Chỉ cần tải về và chạy, mọi thứ từ Compiler (Trình biên dịch) đến cấu hình VS Code (Phím tắt, Debug, Gợi ý code) sẽ được tự động thiết lập trong 1 phút.
+Bộ công cụ tự động hóa 100% việc thiết lập môi trường lập trình C++ dành cho sinh viên KHMT tại phòng máy. Xóa bỏ hoàn toàn nỗi ám ảnh cài đặt cấu hình rườm rà.
 
----
-
-## 🛑 Yêu cầu chuẩn bị (Chỉ 1 điều kiện duy nhất)
-- Máy tính trường **PHẢI** được cài sẵn **Visual Studio Code (VS Code)**. 
-
----
-
-## 📖 Hướng dẫn sử dụng chi tiết (Step-by-Step)
-
-### Bước 1: Tải về và Giải nén (Cực kỳ quan trọng)
-1. Kéo lên đầu trang này, bấm vào nút xanh lá cây **`<> Code`** -> Chọn **`Download ZIP`**.
-2. Copy file `.zip` vừa tải ra **màn hình Desktop** hoặc ổ `D:`.
-3. Bấm chuột phải vào file `.zip`, chọn **`Extract Here`** (Giải nén tại đây).
-   > ⚠️ **CHÚ Ý:** Tuyệt đối không chọn *Extract to Giai-Thuat-C-main* vì nó sẽ tạo ra thư mục lồng nhau, khiến script không tìm thấy đường dẫn.
-
-### Bước 2: Kích hoạt môi trường (Chỉ làm 1 lần mỗi khi mở máy)
-1. Mở thư mục bạn vừa giải nén ra, tìm file có tên **`start.bat`** (hoặc `start`).
-2. **Nháy đúp chuột** để chạy file này.
-   > 🛡️ **Nếu Windows hiện bảng xanh (SmartScreen) cảnh báo:** Đừng lo! Bạn bấm vào chữ **`More info`** -> Chọn **`Run anyway`**.
-3. Một cửa sổ màu đen (CMD) sẽ hiện lên. Hãy để nguyên cho nó chạy. 
-   - Lần chạy đầu tiên: Sẽ mất khoảng 1-2 phút để tải bộ Compiler UCRT64 (khoảng hơn 100MB) từ server về máy.
-   - Khi tải và giải nén xong, cửa sổ đen sẽ tự động đóng và **VS Code sẽ tự động mở lên**.
-
-### Bước 3: Cách viết Code và Chạy thử (Thành quả)
-Khi VS Code đã mở lên, bạn sẽ thấy file **`main.cpp`** có sẵn ở cột bên trái.
-1. Nhấn vào file `main.cpp` và viết code giải thuật của bạn vào đó.
-2. Để chạy code, bạn có 2 cách cực kỳ tiện lợi:
-   - **Cách 1 - Chạy và Gỡ lỗi (Khuyên dùng):** Nhấn phím **`F5`**. Máy sẽ tự động biên dịch và chạy. Nếu bạn đặt dấu chấm đỏ (Breakpoint) ở đầu dòng code, nó sẽ dừng lại để bạn dò xem biến thay đổi thế nào.
-   - **Cách 2 - Chạy siêu tốc:** Nhấn tổ hợp phím **`Ctrl + Shift + B`** (để build). Sau đó nhìn xuống bảng Terminal (phía dưới), gõ `./main` và nhấn Enter để xem kết quả.
+## 🔥 Tính năng tự động hóa
+- **Compiler:** Tải và giải nén trình biên dịch `UCRT64` siêu tốc.
+- **Extensions:** Tự động cài đặt sẵn C/C++ Tools, Code Runner, và Theme One Dark Pro.
+- **Environment:** Tự cấu hình biến môi trường (`PATH`), vào VS Code là gõ phím tắt chạy luôn.
+- **Dọn dẹp:** Tích hợp file gỡ cài đặt sạch sẽ sau khi thực hành.
 
 ---
 
-## 🛠 Nếu gặp lỗi báo đỏ trong file code?
-Đôi khi VS Code chưa kịp nhận diện đường dẫn (IntelliSense chưa load xong).
-- **Cách fix:** Tắt hẳn VS Code đi. Sau đó mở lại thư mục này, hoặc nháy đúp lại file `start.bat` một lần nữa. Lỗi gạch chân đỏ dưới `#include <iostream>` sẽ biến mất.
+## 📖 Hướng dẫn sử dụng chi tiết
 
-## 🌟 Mẹo nhỏ cho dân IT
-Nếu bạn có tài khoản GitHub, hãy bấm vào biểu tượng hình người ở góc trái dưới cùng của VS Code -> Chọn **Turn on Settings Sync** -> Đăng nhập. Toàn bộ theme (giao diện), bộ gõ tiếng Việt, hay các extension quen thuộc từ máy ở nhà của bạn sẽ tự động bay về máy trường!
+### BƯỚC 1: Tải về
+1. Bấm vào nút `<> Code` (màu xanh lá) góc trên cùng -> Chọn **`Download ZIP`**.
+2. Copy file `.zip` vừa tải ra **Desktop** hoặc ổ `D:`.
+3. Bấm chuột phải chọn **`Extract Here`** (Giải nén tại đây).
+   *(Tuyệt đối không chọn Extract to Giai-Thuat-C-main để tránh lỗi đường dẫn).*
+
+### BƯỚC 2: Kích hoạt (Chỉ 1-Click)
+1. Mở thư mục vừa giải nén, nháy đúp chuột vào file **`start.bat`**.
+   > *Nếu Windows hiện bảng xanh cảnh báo: Bấm `More info` -> `Run anyway`.*
+2. Cửa sổ màu đen sẽ tự động tải Compiler và cài Extension. Đợi khoảng 1-2 phút.
+3. Cửa sổ tự đóng, VS Code sẽ mở lên kèm theo Theme One Dark Pro siêu ngầu!
+
+### BƯỚC 3: Chạy Code
+1. Mở file `main.cpp`.
+2. Để chạy giải thuật, bạn có 2 cách:
+   - **Cách 1 (Dò lỗi Debug):** Đặt dấu đỏ, nhấn phím **`F5`**.
+   - **Cách 2 (Code Runner siêu tốc):** Nhấn **`Ctrl + Alt + N`**.
 
 ---
-*Dự án được phát triển bởi CauBeIT (ICTU) nhằm hỗ trợ anh em cài đặt g++ dễ dàng hơn.*
+
+## 🧹 Dọn dẹp máy tính trường
+Sau khi kết thúc buổi thực hành, nếu bạn muốn dọn sạch ổ cứng:
+- Chạy file **`uninstall.bat`**. Nó sẽ tự động gỡ các Extension, xóa thư mục Compiler và reset lại biến môi trường như lúc chưa tải.
+
+---
+*Dự án phát triển bởi Nhất (KHMT K22A - ICTU).*
