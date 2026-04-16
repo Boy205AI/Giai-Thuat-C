@@ -1,52 +1,45 @@
-# 🚀 Giai-Thuat-C: Portable C++ Environment (UCRT64)
+# 🚀 Môi trường C++ "1-Click" (UCRT64)
 
-Môi trường lập trình C++ di động, tự động cấu hình dành riêng cho sinh viên Khoa học Máy tính (KHMT) khi thực hành tại phòng máy. Giải quyết triệt để vấn đề cài đặt rườm rà và thiếu trình biên dịch trên máy tính trường.
+Bộ công cụ tự động setup môi trường lập trình C++ dành riêng cho sinh viên KHMT thực hành tại phòng máy. Chỉ cần tải về và chạy, mọi thứ từ Compiler (Trình biên dịch) đến cấu hình VS Code (Phím tắt, Debug, Gợi ý code) sẽ được tự động thiết lập trong 1 phút.
 
-## 📌 Tính năng nổi bật
-- **1-Click Setup:** Tự động tải, giải nén và cấu hình Compiler chỉ với một file `.bat`.
-- **Không cần Admin:** Hoạt động hoàn hảo trên máy tính bị giới hạn quyền cài đặt.
-- **Cấu hình chuẩn:** Tích hợp sẵn bộ cấu hình `.vscode` (IntelliSense, Debug F5, Task Build).
-- **Tốc độ:** Sử dụng trình biên dịch UCRT64 mới nhất, tối ưu cho Windows.
+---
+
+## 🛑 Yêu cầu chuẩn bị (Chỉ 1 điều kiện duy nhất)
+- Máy tính trường **PHẢI** được cài sẵn **Visual Studio Code (VS Code)**. 
 
 ---
 
 ## 📖 Hướng dẫn sử dụng chi tiết (Step-by-Step)
 
-Để sử dụng môi trường này trên máy tính trường, bạn chỉ cần thực hiện theo các bước sau:
+### Bước 1: Tải về và Giải nén (Cực kỳ quan trọng)
+1. Kéo lên đầu trang này, bấm vào nút xanh lá cây **`<> Code`** -> Chọn **`Download ZIP`**.
+2. Copy file `.zip` vừa tải ra **màn hình Desktop** hoặc ổ `D:`.
+3. Bấm chuột phải vào file `.zip`, chọn **`Extract Here`** (Giải nén tại đây).
+   > ⚠️ **CHÚ Ý:** Tuyệt đối không chọn *Extract to Giai-Thuat-C-main* vì nó sẽ tạo ra thư mục lồng nhau, khiến script không tìm thấy đường dẫn.
 
-### Bước 1: Tải môi trường về máy
-1. Nhấn vào nút `<> Code` (màu xanh lá) ở góc trên bên phải màn hình.
-2. Chọn **Download ZIP**.
-3. Copy file `.zip` vừa tải về ổ `D:` (hoặc Desktop) và **Giải nén** (Extract Here).
+### Bước 2: Kích hoạt môi trường (Chỉ làm 1 lần mỗi khi mở máy)
+1. Mở thư mục bạn vừa giải nén ra, tìm file có tên **`start.bat`** (hoặc `start`).
+2. **Nháy đúp chuột** để chạy file này.
+   > 🛡️ **Nếu Windows hiện bảng xanh (SmartScreen) cảnh báo:** Đừng lo! Bạn bấm vào chữ **`More info`** -> Chọn **`Run anyway`**.
+3. Một cửa sổ màu đen (CMD) sẽ hiện lên. Hãy để nguyên cho nó chạy. 
+   - Lần chạy đầu tiên: Sẽ mất khoảng 1-2 phút để tải bộ Compiler UCRT64 (khoảng hơn 100MB) từ server về máy.
+   - Khi tải và giải nén xong, cửa sổ đen sẽ tự động đóng và **VS Code sẽ tự động mở lên**.
 
-### Bước 2: Kích hoạt tự động
-1. Mở thư mục vừa giải nén ra.
-2. Tìm và nháy đúp chuột vào file **`start.bat`**.
-3. Cửa sổ dòng lệnh đen (CMD) sẽ hiện lên. 
-   > *Lưu ý: Lần chạy đầu tiên sẽ mất khoảng 1-2 phút để hệ thống tự động tải bộ Compiler. Các lần sau sẽ mở lên ngay lập tức.*
-4. Đợi thông báo thành công, VS Code sẽ tự động bật lên với thư mục code này.
-
-### Bước 3: Viết code và Chạy thử (Quan trọng)
-Khi VS Code đã mở lên, cấu hình đã được nạp sẵn. Để chạy code giải thuật:
-1. Mở file `main.cpp` có sẵn (hoặc tạo file `.cpp` mới).
-2. Viết mã nguồn của bạn.
-3. Để biên dịch và chạy, bạn có 2 cách:
-   - **Cách 1 (Khuyên dùng để Debug):** Nhấn phím **`F5`**. Trình gỡ lỗi sẽ chạy và bạn có thể theo dõi từng dòng code.
-   - **Cách 2 (Chạy nhanh):** Bấm tổ hợp phím **`Ctrl + Shift + B`** để biên dịch, sau đó mở Terminal gõ `./main` để chạy.
-
----
-
-## 🛠 Cấu trúc môi trường bên trong
-- **Compiler:** MSYS2 UCRT64 (GCC/G++).
-- **VS Code Config:**
-  - `tasks.json`: Cấu hình lệnh biên dịch.
-  - `launch.json`: Hỗ trợ công cụ gỡ lỗi (Debugger).
-  - `c_cpp_properties.json`: Chuẩn hóa IntelliSense (gợi ý code, chống báo lỗi đỏ).
-  - `settings.json`: Tối ưu Terminal.
-
-## ⚠️ Lưu ý nhỏ
-- Nếu VS Code của bạn đã đăng nhập tài khoản GitHub/Microsoft, tính năng **Settings Sync** sẽ tự động kéo các Extension (như C/C++, Code Runner) và Theme quen thuộc của bạn về máy trường.
-- Đừng thay đổi vị trí các file trong thư mục `.vscode` để tránh mất cấu hình.
+### Bước 3: Cách viết Code và Chạy thử (Thành quả)
+Khi VS Code đã mở lên, bạn sẽ thấy file **`main.cpp`** có sẵn ở cột bên trái.
+1. Nhấn vào file `main.cpp` và viết code giải thuật của bạn vào đó.
+2. Để chạy code, bạn có 2 cách cực kỳ tiện lợi:
+   - **Cách 1 - Chạy và Gỡ lỗi (Khuyên dùng):** Nhấn phím **`F5`**. Máy sẽ tự động biên dịch và chạy. Nếu bạn đặt dấu chấm đỏ (Breakpoint) ở đầu dòng code, nó sẽ dừng lại để bạn dò xem biến thay đổi thế nào.
+   - **Cách 2 - Chạy siêu tốc:** Nhấn tổ hợp phím **`Ctrl + Shift + B`** (để build). Sau đó nhìn xuống bảng Terminal (phía dưới), gõ `./main` và nhấn Enter để xem kết quả.
 
 ---
-*Dự án được phát triển để tối ưu hóa việc học Giải thuật.*
+
+## 🛠 Nếu gặp lỗi báo đỏ trong file code?
+Đôi khi VS Code chưa kịp nhận diện đường dẫn (IntelliSense chưa load xong).
+- **Cách fix:** Tắt hẳn VS Code đi. Sau đó mở lại thư mục này, hoặc nháy đúp lại file `start.bat` một lần nữa. Lỗi gạch chân đỏ dưới `#include <iostream>` sẽ biến mất.
+
+## 🌟 Mẹo nhỏ cho dân IT
+Nếu bạn có tài khoản GitHub, hãy bấm vào biểu tượng hình người ở góc trái dưới cùng của VS Code -> Chọn **Turn on Settings Sync** -> Đăng nhập. Toàn bộ theme (giao diện), bộ gõ tiếng Việt, hay các extension quen thuộc từ máy ở nhà của bạn sẽ tự động bay về máy trường!
+
+---
+*Dự án được phát triển bởi CauBeIT (ICTU) nhằm hỗ trợ anh em cài đặt g++ dễ dàng hơn.*
