@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.compilerPath": "${env:MY_COMPILER}\\g++.exe",
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && \"${env:MY_COMPILER}\\g++.exe\" $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    }
+}
