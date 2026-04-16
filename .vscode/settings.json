@@ -2,7 +2,9 @@
     "C_Cpp.default.compilerPath": "${env:MY_COMPILER}\\g++.exe",
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
+    "code-runner.preserveFocus": false,
     "code-runner.executorMap": {
-        "cpp": "cd $dir && \"${env:MY_COMPILER}\\g++.exe\" $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
-    }
+        "cpp": "cd $dir && g++ \"$fileName\" -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\""
+    },
+    "workbench.colorTheme": "One Dark Pro"
 }
