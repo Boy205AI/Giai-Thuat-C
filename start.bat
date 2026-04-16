@@ -28,30 +28,29 @@ echo.
 echo [3/4] Dang ket noi may chu MSYS2.org de tai G++ va GDB...
 call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -Sy --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
 
-:: 4. Kiem tra va cai dat Extension (Co che tu tim duong dan VS Code)
 echo.
 echo [4/4] Dang kiem tra va cai dat Extensions cho VS Code...
 
-:: Kiem tra xem lenh 'code' co dang hoat dong khong
+set "VS_CODE_CMD=code"
+
 where code >nul 2>nul
 if %ERRORLEVEL% neq 0 (
-    echo [!] Lenh 'code' chua co trong PATH. Dang thu tim trong cac thu muc he thong...
-    :: Quet qua cac duong dan cai dat mac dinh cua VS Code tren Windows
-    if exist "%LocalAppData%\Programs\Microsoft VS Code\bin\code.cmd" set "PATH=%LocalAppData%\Programs\Microsoft VS Code\bin;%PATH%"
-    if exist "C:\Program Files\Microsoft VS Code\bin\code.cmd" set "PATH=C:\Program Files\Microsoft VS Code\bin;%PATH%"
-    if exist "C:\Program Files (x86)\Microsoft VS Code\bin\code.cmd" set "PATH=C:\Program Files (x86)\Microsoft VS Code\bin;%PATH%"
+    if exist "%LocalAppData%\Programs\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=%LocalAppData%\Programs\Microsoft VS Code\bin\code.cmd"
+    if exist "C:\Program Files\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=C:\Program Files\Microsoft VS Code\bin\code.cmd"
+    if exist "C:\Program Files (x86)\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=C:\Program Files (x86)\Microsoft VS Code\bin\code.cmd"
 )
 
-:: Thu lai lenh code sau khi da tim kiem
-where code >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    echo [+] Da tim thay VS Code! Dang tien hanh cai dat...
-    call code --install-extension ms-vscode.cpptools --force
-    call code --install-extension formulahendry.code-runner --force
-    echo [OK] Da gui lenh cai dat Extension thanh cong.
+if defined VS_CODE_CMD (
+    echo [+] Da xac dinh duoc vi tri VS Code. Dang cai dat...
+    
+    call "%VS_CODE_CMD%" --install-extension ms-vscode.cpptools --force
+    call "%VS_CODE_CMD%" --install-extension formulahendry.code-runner --force
+    
+    echo [OK] Da gui lenh cai dat. Dang doi 5 giay de he thong ghi nhan...
+    timeout /t 5 >nul
 ) else (
-    echo [!] CANH BAO: Khong tim thay VS Code tren may nay. 
-    echo Ban hay tu mo VS Code va cai Extension 'C/C++' va 'Code Runner' nhe!
+    echo [!] CANH BAO: Khong tim thay VS Code tren he thong.
+    echo Ban hay tu mo VS Code va cài Extensions thu cong nhe!
 )
 
 echo.
