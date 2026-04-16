@@ -33,7 +33,6 @@ echo.
 echo [4/4] Dang cai dat Extensions cho VS Code...
 call code --install-extension ms-vscode.cpptools --force
 call code --install-extension formulahendry.code-runner --force
-call code --install-extension zhuangtongfa.Material-theme --force
 
 echo.
 echo [*] Dang cau hinh bien moi truong...
