@@ -28,30 +28,12 @@ echo.
 echo [3/4] Dang ket noi may chu MSYS2.org de tai G++ va GDB...
 call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -Sy --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
 
+:install_extensions
 echo.
-echo [4/4] Dang kiem tra va cai dat Extensions cho VS Code...
-
-set "VS_CODE_CMD=code"
-
-where code >nul 2>nul
-if %ERRORLEVEL% neq 0 (
-    if exist "%LocalAppData%\Programs\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=%LocalAppData%\Programs\Microsoft VS Code\bin\code.cmd"
-    if exist "C:\Program Files\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=C:\Program Files\Microsoft VS Code\bin\code.cmd"
-    if exist "C:\Program Files (x86)\Microsoft VS Code\bin\code.cmd" set "VS_CODE_CMD=C:\Program Files (x86)\Microsoft VS Code\bin\code.cmd"
-)
-
-if defined VS_CODE_CMD (
-    echo [+] Da xac dinh duoc vi tri VS Code. Dang cai dat...
-    
-    call "%VS_CODE_CMD%" --install-extension ms-vscode.cpptools --force
-    call "%VS_CODE_CMD%" --install-extension formulahendry.code-runner --force
-    
-    echo [OK] Da gui lenh cai dat. Dang doi 5 giay de he thong ghi nhan...
-    timeout /t 5 >nul
-) else (
-    echo [!] CANH BAO: Khong tim thay VS Code tren he thong.
-    echo Ban hay tu mo VS Code va cài Extensions thu cong nhe!
-)
+echo [4/4] Dang cai dat Extensions cho VS Code...
+call code --install-extension ms-vscode.cpptools --force
+call code --install-extension formulahendry.code-runner --force
+call code --install-extension zhuangtongfa.Material-theme --force
 
 echo.
 echo [*] Dang cau hinh bien moi truong...
