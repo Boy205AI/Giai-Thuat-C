@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "UCRT64-Portable",
+            "name": "MSYS2-UCRT64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
