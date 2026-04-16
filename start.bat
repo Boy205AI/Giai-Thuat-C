@@ -1,5 +1,5 @@
 @echo off
-title Setup MSYS2 + G++ + VS Code Extensions
+title Setup MSYS2 + G++ + GDB + VS Code Extensions
 echo ===================================================
 echo     DANG KHOI TAO MOI TRUONG C++ TU MSYS2
 echo ===================================================
@@ -10,8 +10,8 @@ set "MSYS_DIR=%CURRENT_DIR%msys64"
 set "MSYS_URL=https://github.com/msys2/msys2-installer/releases/download/2024-01-13/msys2-base-x86_64-20240113.sfx.exe"
 set "INSTALLER=msys2-base.sfx.exe"
 
-if exist "%MSYS_DIR%\ucrt64\bin\g++.exe" (
-    echo [OK] Trinh bien dich g++ da ton tai tren may!
+if exist "%MSYS_DIR%\ucrt64\bin\gdb.exe" (
+    echo [OK] Trinh bien dich va go loi da ton tai tren may!
     goto :install_extensions
 )
 
@@ -25,8 +25,8 @@ echo [2/4] Dang khoi tao he thong MSYS2...
 del "%INSTALLER%"
 
 echo.
-echo [3/4] Dang chay Pacman de tai g++ (Co the mat 3-5 phut tuy mang)...
-call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -S --noconfirm mingw-w64-ucrt-x86_64-gcc"
+echo [3/4] Dang ket noi may chu MSYS2.org de tai G++ va GDB...
+call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -Sy --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
 
 :install_extensions
 echo.
@@ -37,7 +37,6 @@ call code --install-extension zhuangtongfa.Material-theme --force
 
 echo.
 echo [*] Dang cau hinh bien moi truong...
-
 setx MY_COMPILER "%MSYS_DIR%\ucrt64\bin"
 setx PATH "%MSYS_DIR%\ucrt64\bin;%PATH%"
 
