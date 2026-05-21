@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "${env:MY_COMPILER}\\g++.exe",
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.preserveFocus": false,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ \"$fileName\" -o \"$fileNameWithoutExt.exe\" && \"$dir$fileNameWithoutExt.exe\""
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt"
+}
