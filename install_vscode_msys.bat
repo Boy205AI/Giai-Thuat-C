@@ -4,11 +4,10 @@ echo ===================================================
 echo     DANG KHOI TAO MOI TRUONG C++ CAO CAP (ALL-IN-ONE)
 echo ===================================================
 
-:: [NANG CAP 1] Ep script luon chay tai dung thu muc chua no
-:: (Khac phuc triet de loi khi nguoi dung chuot phai chon "Run as Administrator")
+:: Ep script luon chay tai dung thu muc chua no
 cd /d "%~dp0"
 
-:: Kiem tra cong cu curl (phai co de tai file)
+:: Kiem tra cong cu curl
 where curl >nul 2>nul
 if %errorlevel% neq 0 (
     echo [Loi] Khong tim thay 'curl'. Vui long cap nhat Windows hoac cai dat curl.
@@ -16,7 +15,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: --- BUOC CO BAN: TU DONG CAI VS CODE NEU CHUA CO ---
+:: --- TU DONG CAI VS CODE NEU CHUA CO ---
 where code >nul 2>nul
 if %errorlevel% neq 0 (
     echo Dang tai VSCode ban moi nhat tu Microsoft...
@@ -26,7 +25,6 @@ if %errorlevel% neq 0 (
     start /wait vscode_setup.exe /verysilent /mergetasks=!runcode,addtopath
     del "vscode_setup.exe"
     
-    :: Nap ngay duong dan VS Code vao phien lam viec hien tai de cac lenh sau nhan dien duoc
     set "PATH=%LocalAppData%\Programs\Microsoft VS Code\bin;%PATH%"
     echo [OK] Da cai dat VSCode thanh cong!
 ) else (
@@ -53,18 +51,16 @@ del "%INSTALLER%"
 
 echo.
 echo [3/4] Dang ket noi may chu MSYS2.org de tai G++ va GDB...
-:: [NANG CAP 2] Vong lap tu dong thu lai 3 lan neu gap loi mang (Loi 403 Forbidden, Timeout...)
 set /a retry_count=1
 
 :retry_pacman
 echo Dang tai goi va dong bo thong qua Pacman (Lan thu %retry_count%/3)...
-:: Dung -Syy de ep lam moi cache may chu thay vi -Sy, nham bo qua loi nghen 403
 call "%MSYS_DIR%\usr\bin\bash.exe" -lc "pacman -Syy --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
 
 if %errorlevel% neq 0 (
     if %retry_count% lss 3 (
         set /a retry_count+=1
-        echo [Canh bao] Tai that bai do loi may chu hoac rst mang. Tu dong doi 5 giay de thu lai...
+        echo [Canh bao] Tai that bai do loi mang. Tu dong doi 5 giay de thu lai...
         timeout /t 5 >nul
         goto :retry_pacman
     ) else (
@@ -78,7 +74,6 @@ echo [OK] Da tai va cai dat hoan tat G++ va GDB!
 :install_extensions
 echo.
 echo [4/4] Dang cai dat Extensions cho VS Code...
-:: Thay doi call code thanh cmd /c code de tranh tinh trang treo CMD cho phan mem phan hoi
 cmd /c code --install-extension ms-vscode.cpptools --force
 cmd /c code --install-extension formulahendry.code-runner --force
 cmd /c code --install-extension zhuangtongfa.Material-theme --force
@@ -87,10 +82,9 @@ echo.
 echo [*] Dang cau hinh bien moi truong PATH cho Windows...
 setx MY_COMPILER "%MSYS_DIR%\ucrt64\bin" >nul
 
-:: [NANG CAP 3] Dung PowerShell de nap an toan vao User PATH, tranh loi cat chuoi 1024 ky tu cua setx
+:: Cau lenh PowerShell chay tren mot hang duy nhat de khong bi crash
 powershell -Command "$userPath = [Environment]::GetEnvironmentVariable('Path', 'User'); $newPath = '%MSYS_DIR%\ucrt64\bin'; if ($userPath -notmatch [regex]::Escape($newPath)) { $finalPath = $userPath + ';' + $newPath; [Environment]::SetEnvironmentVariable('Path', $finalPath, 'User') }"
 
-:: Luu tam thoi vao session hien tai de VS Code phia duoi mo len nhan luon o lan dau tien
 set "PATH=%MSYS_DIR%\ucrt64\bin;%PATH%"
 
 echo ===================================================
