@@ -1,5 +1,3 @@
-# Lưu file này với tên: Install-VSCode.ps1
-
 Write-Host "=== ĐANG CÀI ĐẶT VISUAL STUDIO CODE ===" -ForegroundColor Green
 
 # Sử dụng winget để tự động tải và cài đặt VS Code
