@@ -1,45 +1,27 @@
-# 🚀 Giai-Thuat-C: Tự động hóa môi trường C++ (MSYS2 - UCRT64)
+**CPP-ENV (MSYS2 + UCRT64) — Thiết lập môi trường C++ cho Windows**
 
-Bộ công cụ "1-Click" giúp thiết lập môi trường lập trình C++ chuẩn trên Windows, tối ưu cho sinh viên thực hành tại phòng máy ICTU.
+Phiên bản chuyên dụng này cung cấp hai script chính để:
+- Cài đặt: `install_msys.bat` — tải và cài MSYS2 (UCRT64 toolchain), cấu hình PATH, và cài một số extension cho VS Code.
+- Gỡ cài đặt: `uninstall.bat` — xóa `msys64`, gỡ extensions đã cài, và dọn các biến môi trường.
 
-## 🛠 Tính năng chính
-- **Thông minh:** Tự động phát hiện VS Code. Nếu máy chưa có, script tự tải và cài bản mới nhất từ Microsoft.
-- **Hiện đại:** Cài đặt MSYS2 và bộ Compiler UCRT64 (GCC 13+) mới nhất qua Pacman.
-- **Tiện lợi:** Tự động cài Extension (C/C++ Tools, Code Runner) và cấu hình phím tắt.
-- **Sạch sẽ:** Có sẵn script gỡ cài đặt để dọn dẹp máy tính sau khi thực hành xong.
+**Mục tiêu**: cung cấp môi trường C++ nhẹ, nhất quán cho phòng máy hoặc lớp học, dễ cài bằng một cú nhấp.
 
 ---
 
-## 📖 Hướng dẫn cài đặt
-
-### Bước 1: Tải về
-1. Bấm nút **Code** (màu xanh) -> **Download ZIP**.
-2. Giải nén thư mục ra **Desktop** hoặc ổ **D:**.
-
-### Bước 2: Chạy Script
-Nháy đúp chuột vào file `install_msys.bat` (hoặc tên file bạn đặt).
-- **Trường hợp 1 (Máy đã có VS Code):** Script sẽ tự tìm đường dẫn và cài thêm Compiler + Extension.
-- **Trường hợp 2 (Máy chưa có VS Code):** Script sẽ tự động tải bộ cài (~90MB), cài đặt thầm lặng vào máy, sau đó mới cài tiếp Compiler.
-
-> *Lưu ý: Hãy để màn hình đen chạy cho đến khi VS Code tự động mở lên là thành công.*
+**Nội dung tệp / thư mục chính**
+- `install_msys.bat`: Script tự động tải MSYS2, cài toolchain UCRT64 (GCC/GDB), cấu hình `MY_COMPILER` và thêm `ucrt64\bin` vào `Path` (User). Cũng cố gắng cài VS Code nếu chưa có.
+- `uninstall.bat`: Script gỡ extensions, xóa `msys64`, xóa giá trị registry `MY_COMPILER` và loại bỏ entry `...\\ucrt64\\bin` khỏi `Path` của user.
+- `msys64/`: Thư mục cài đặt MSYS2 (sẽ được tạo khi chạy `install_msys.bat`).
+- `main.cpp`, `algorithm.cpp`: ví dụ mã nguồn mẫu để kiểm tra trình biên dịch.
+- `install_msys.bat` và `uninstall.bat` nên được chạy với quyền người dùng bình thường (User). Nếu gặp lỗi quyền, hãy chạy bằng tài khoản admin.
 
 ---
 
-## 💻 Hướng dẫn chạy Code (với Code Runner)
+**Hướng dẫn cài đặt (nhanh)**
+1. Giải nén repository vào một thư mục trên máy (ví dụ `C:\cpp-env` hoặc `D:\cpp`).
+2. Mở Command Prompt hoặc nhấp đúp vào `install_msys.bat` từ File Explorer.
 
-Môi trường đã được cấu hình để chạy trực tiếp trên **Command Prompt (CMD)** để tránh lỗi hiển thị.
+Nếu muốn chạy không tương tác (để test/tự động hoá), mở PowerShell tại thư mục đã giải nén và chạy:
 
-1. Mở file `.cpp` bất kỳ (ví dụ: `main.cpp`).
-2. Sử dụng tổ hợp phím: **`Ctrl + Alt + N`** để chạy code siêu tốc.
-3. Kết quả sẽ hiện ngay ở tab **TERMINAL** phía dưới.
-4. Nếu muốn gỡ lỗi (Debug), bạn chỉ cần nhấn **`F5`**.
-
----
-
-## 🧹 Gỡ cài đặt & Dọn dẹp
-Sau khi thực hành xong tại phòng máy, bạn nên chạy file `uninstall.bat` để:
-- Gỡ bỏ các Extension đã cài.
-- Xóa thư mục Compiler (`msys64`) để trả lại dung lượng bộ nhớ.
-- Xóa các biến môi trường đã thiết lập.
-
-*Lưu ý: Để giữ lại VS Code cho người sau dùng, script gỡ cài đặt sẽ không xóa phần mềm VS Code.*
+```powershell
+./install_msys.bat
